@@ -34,13 +34,29 @@
 <p>Standard Streams Handlers.</p>
 
 <h2>
-<a name="stdout" class="anchor" href="#stdout"><span class="octicon octicon-link"></span></a>STDOUT</h2>
+<a name="using-it" class="anchor" href="#using-it"><span class="octicon octicon-link"></span></a>Using it</h2>
+
+<div class="highlight highlight-bash"><pre><span class="nb">source </span>path/to/std/source.bash
+
+std_in -q <span class="s2">"Input required"</span>
+<span class="nb">echo</span> <span class="s2">"${STDIN}"</span>
+</pre></div>
+
+<h2>
+<a name="available-functions" class="anchor" href="#available-functions"><span class="octicon octicon-link"></span></a>Available functions</h2>
+
+<ul>
+<li><a href="#std_out">std_out</a></li>
+<li><a href="#std_err">std_err</a></li>
+<li><a href="#std_in">std_in</a></li>
+</ul><h3>
+<a name="std_out" class="anchor" href="#std_out"><span class="octicon octicon-link"></span></a>std_out</h3>
 
 <p>The <code>std_out</code> function is basicaly a wrapper of <code>echo</code> build-in command, but there
 are some gotchas you can also use.</p>
 
-<h3>
-<a name="writing-on-stdout" class="anchor" href="#writing-on-stdout"><span class="octicon octicon-link"></span></a>Writing on STDOUT</h3>
+<h4>
+<a name="writing-on-stdout" class="anchor" href="#writing-on-stdout"><span class="octicon octicon-link"></span></a>Writing on STDOUT</h4>
 
 <p>As the same of <code>echo</code> build-in command, <code>std_out</code> function will always write on
 <em>STDOUT</em>.</p>
@@ -48,16 +64,16 @@ are some gotchas you can also use.</p>
 <div class="highlight highlight-bash"><pre>std_out <span class="s2">"STDOUT write"</span>
 </pre></div>
 
-<h3>
-<a name="writing-a-single-line" class="anchor" href="#writing-a-single-line"><span class="octicon octicon-link"></span></a>Writing a single line</h3>
+<h4>
+<a name="writing-a-single-line" class="anchor" href="#writing-a-single-line"><span class="octicon octicon-link"></span></a>Writing a single line</h4>
 
 <p>This is the same behavior of <code>echo</code>.</p>
 
 <div class="highlight highlight-bash"><pre>std_out
 </pre></div>
 
-<h3>
-<a name="stylizing" class="anchor" href="#stylizing"><span class="octicon octicon-link"></span></a>Stylizing</h3>
+<h4>
+<a name="stylizing" class="anchor" href="#stylizing"><span class="octicon octicon-link"></span></a>Stylizing</h4>
 
 <p>Stylize texts on Bash sometimes sucks! You also have to write the escape char and
 then write the style sequence; <code>std_out</code> use <code>-e</code> option on <code>echo</code> build-in
@@ -67,16 +83,16 @@ when you're in a interactive shell.</p>
 <div class="highlight highlight-bash"><pre>std_out <span class="s2">"[0;31]S[][0;32]t[][0;33]y[][0;34]l[][1;90]i[][0;103]z[][4;36]i[][0;36]n[][0;42]g[]"</span>
 </pre></div>
 
-<h3>
-<a name="dont-use-new-line" class="anchor" href="#dont-use-new-line"><span class="octicon octicon-link"></span></a>Don't use new line</h3>
+<h4>
+<a name="dont-use-new-line" class="anchor" href="#dont-use-new-line"><span class="octicon octicon-link"></span></a>Don't use new line</h4>
 
 <p>As the same of <code>echo</code> you can avoid use the new line at end.</p>
 
 <div class="highlight highlight-bash"><pre>std_out -n <span class="s2">"No new line"</span>
 </pre></div>
 
-<h3>
-<a name="dont-escape" class="anchor" href="#dont-escape"><span class="octicon octicon-link"></span></a>Don't escape</h3>
+<h4>
+<a name="dont-escape" class="anchor" href="#dont-escape"><span class="octicon octicon-link"></span></a>Don't escape</h4>
 
 <p>In that part <code>std_out</code> is exactly the opposite of <code>echo</code> build-in command. By
 default, <code>echo</code> does not escape special chars and <code>std_out</code> does, but you also
@@ -85,8 +101,8 @@ can avoid this behavior if you want.</p>
 <div class="highlight highlight-bash"><pre>std_out -e <span class="s2">"\nDo not escape line"</span>
 </pre></div>
 
-<h2>
-<a name="stderr" class="anchor" href="#stderr"><span class="octicon octicon-link"></span></a>STDERR</h2>
+<h3>
+<a name="std_err" class="anchor" href="#std_err"><span class="octicon octicon-link"></span></a>std_err</h3>
 
 <p>With <code>std_err</code> you can use all options of <code>std_out</code> but the output will be write
 on <em>STDERR</em> instead or <em>STDOUT</em>.</p>
@@ -94,16 +110,16 @@ on <em>STDERR</em> instead or <em>STDOUT</em>.</p>
 <div class="highlight highlight-bash"><pre>std_err <span class="s2">"STDERR write"</span>
 </pre></div>
 
-<h2>
-<a name="stdin" class="anchor" href="#stdin"><span class="octicon octicon-link"></span></a>STDIN</h2>
+<h3>
+<a name="std_in" class="anchor" href="#std_in"><span class="octicon octicon-link"></span></a>std_in</h3>
 
 <p>Using <code>std_in</code> you have a lot of options already available on <code>read</code> build-in
 command, but there are some other helpful things you also can use.
 In first the last input is stored on <code>STDIN</code> Bash variable, so, after you use
 <code>std_in</code> you can get the value by calling <code>$STDIN</code>.</p>
 
-<h3>
-<a name="input" class="anchor" href="#input"><span class="octicon octicon-link"></span></a>Input</h3>
+<h4>
+<a name="input" class="anchor" href="#input"><span class="octicon octicon-link"></span></a>Input</h4>
 
 <div class="highlight highlight-bash"><pre>std_in <span class="s2">"Input"</span>
 </pre></div>
@@ -111,56 +127,56 @@ In first the last input is stored on <code>STDIN</code> Bash variable, so, after
 <p>Does not looks so better, but you can use the same styles you use on <code>std_out</code>
 function to stylize the message.</p>
 
-<h3>
-<a name="required-input" class="anchor" href="#required-input"><span class="octicon octicon-link"></span></a>Required input</h3>
+<h4>
+<a name="required-input" class="anchor" href="#required-input"><span class="octicon octicon-link"></span></a>Required input</h4>
 
 <p>It will not stop until you provide a value.</p>
 
 <div class="highlight highlight-bash"><pre>std_in -q <span class="s2">"Input required"</span>
 </pre></div>
 
-<h3>
-<a name="using-readline" class="anchor" href="#using-readline"><span class="octicon octicon-link"></span></a>Using readline</h3>
+<h4>
+<a name="using-readline" class="anchor" href="#using-readline"><span class="octicon octicon-link"></span></a>Using readline</h4>
 
 <p>You can use readline as well as <code>read</code> build-in does.</p>
 
 <div class="highlight highlight-bash"><pre>std_in -e <span class="s2">"Input using readline"</span>
 </pre></div>
 
-<h3>
-<a name="defining-a-delimiter" class="anchor" href="#defining-a-delimiter"><span class="octicon octicon-link"></span></a>Defining a delimiter</h3>
+<h4>
+<a name="defining-a-delimiter" class="anchor" href="#defining-a-delimiter"><span class="octicon octicon-link"></span></a>Defining a delimiter</h4>
 
 <p>You can define a delimiter as well as <code>read</code> build-in does.</p>
 
 <div class="highlight highlight-bash"><pre>std_in -d . <span class="s2">"Input with delimiter \".\""</span>
 </pre></div>
 
-<h3>
-<a name="defining-a-timeout" class="anchor" href="#defining-a-timeout"><span class="octicon octicon-link"></span></a>Defining a timeout</h3>
+<h4>
+<a name="defining-a-timeout" class="anchor" href="#defining-a-timeout"><span class="octicon octicon-link"></span></a>Defining a timeout</h4>
 
 <p>You can define a timeout as well as <code>read</code> build-in does.</p>
 
 <div class="highlight highlight-bash"><pre>std_in -t 2 <span class="s2">"Input with timeout of 2 seconds"</span>
 </pre></div>
 
-<h3>
-<a name="defining-a-limit-of-chars" class="anchor" href="#defining-a-limit-of-chars"><span class="octicon octicon-link"></span></a>Defining a limit of chars</h3>
+<h4>
+<a name="defining-a-limit-of-chars" class="anchor" href="#defining-a-limit-of-chars"><span class="octicon octicon-link"></span></a>Defining a limit of chars</h4>
 
 <p>You can define a limit of chars as well as <code>read</code> build-in does.</p>
 
 <div class="highlight highlight-bash"><pre>std_in -n 4 <span class="s2">"Input with with limit of 4 chars"</span>
 </pre></div>
 
-<h3>
-<a name="defining-a-preload" class="anchor" href="#defining-a-preload"><span class="octicon octicon-link"></span></a>Defining a preload</h3>
+<h4>
+<a name="defining-a-preload" class="anchor" href="#defining-a-preload"><span class="octicon octicon-link"></span></a>Defining a preload</h4>
 
 <p>You can define a preload (default value) as well as <code>read</code> build-in does.</p>
 
 <div class="highlight highlight-bash"><pre>std_in -i <span class="s2">"Preload"</span> <span class="s2">"Input with with a preload"</span>
 </pre></div>
 
-<h3>
-<a name="custom-prompt" class="anchor" href="#custom-prompt"><span class="octicon octicon-link"></span></a>Custom prompt</h3>
+<h4>
+<a name="custom-prompt" class="anchor" href="#custom-prompt"><span class="octicon octicon-link"></span></a>Custom prompt</h4>
 
 <p>By default, <code>std_in</code> uses <code>:</code> as prompt, but you can customize it.</p>
 
